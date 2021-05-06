@@ -5,15 +5,15 @@ public class AppPessoa {
 	public static void main(String[] args) {
 		PessoaRepositoryTransient repo = new PessoaRepositoryTransient();
 		
-		Pessoa marcello = new Física("Marcello Erick Bonfim","1.123.544-4 SSP-PR", "910.822.570-28");
+		Física marcello = new Física("Marcello Erick Bonfim","1.123.544-4 SSP-PR", "910.822.570-28");
 		marcello.setProfessor(new Professor());
 		
 		//criar outra pessoa que seja só aluno
-		Pessoa josias = null; //...
+		Física josias = null; //...
 		
 		
 		//criar outra pessoa que seja professor e aluno
-		Pessoa nelson = null; //...
+		Física nelson = null; //...
 		
 		repo.incluir(marcello);
 		repo.incluir(josias);
