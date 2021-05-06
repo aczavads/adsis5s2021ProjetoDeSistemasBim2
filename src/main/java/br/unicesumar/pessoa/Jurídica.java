@@ -1,5 +1,5 @@
 package br.unicesumar.pessoa;
 
-public class Professor {
+public class Jurídica {
 
 }
