@@ -1,5 +1,5 @@
 package br.unicesumar.pessoa;
 
-public class Jurídica {
+public class JurÃ­dica {
 
 }
