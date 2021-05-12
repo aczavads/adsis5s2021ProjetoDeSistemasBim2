@@ -22,6 +22,14 @@ public class AppPessoa {
 		repo.incluir(josias);
 		repo.incluir(nelson);
 		
+		listarAlunosExclusivos(repo);
+		
+		listarProfessoresExclusivos(repo);
+		
+		//listarPessoasComPapéis(repo);
+	}
+
+	private static void listarPessoasComPapéis(PessoaRepositoryTransient repo) {
 		for (Pessoa p : repo.encontrarTodos()) {
 			//Exibir os dados da pessoa e em seguida os seu(s) papel(éis)
 			System.out.println(p);
@@ -36,9 +44,28 @@ public class AppPessoa {
 					System.out.println(">> É aluno");
 				else 
 					System.out.println(">> Não é aluno");
-
 			}
-			
 		}
 	}
+
+	private static void listarProfessoresExclusivos(PessoaRepositoryTransient repo) {
+		System.out.println("=== Só professores ===");
+		for (Pessoa p : repo.obterProfessoresExclusivos() ) {
+			System.out.println(p);
+		}
+		
+	}
+
+	private static void listarAlunosExclusivos(PessoaRepositoryTransient repo) {
+		System.out.println("=== Só alunos ===");
+		for (Pessoa p : repo.obterAlunosExclusivos() ) {
+			System.out.println(p);
+		}		
+	}
 }
+
+
+
+
+
+
