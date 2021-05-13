@@ -1,6 +1,7 @@
 package br.unicesumar.pessoa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class Pessoa {
@@ -29,6 +30,9 @@ public abstract class Pessoa {
 	
 	public Fornecedor getPapelFornecedorVigente() {
 		//implementar aqui.
+		Date hoje = new Date();
+		//comparar hoje com os papéisDeFornecedor existentes para ver se "hoje" se encaixa em algum deles.
+		//Dica: como o papel vigente provavelmente estará com vinculadoAté nulo, considere que ser for nulo é igual a "hoje".
 		return null;
 	}
 	
