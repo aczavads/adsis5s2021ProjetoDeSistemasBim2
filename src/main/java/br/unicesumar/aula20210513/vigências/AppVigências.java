@@ -33,7 +33,16 @@ public class AppVigências {
 	}
 
 	private static boolean validarNovoVínculo(Date vinculadoEm, Date vinculadoAté, Date novaDataParaVínculo) {
-		return false;
+		return (novaDataParaVínculo.compareTo(vinculadoEm) == -1 || novaDataParaVínculo.compareTo(vinculadoAté) == 1); 
 	}
 
 }
+
+
+
+
+
+
+
+
+
