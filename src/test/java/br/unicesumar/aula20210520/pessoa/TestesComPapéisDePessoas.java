@@ -1,0 +1,79 @@
+package br.unicesumar.aula20210520.pessoa;
+
+import static org.junit.Assert.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.junit.Test;
+
+public class TestesComPapéisDePessoas {
+	
+	@Test(expected=PapelConflitanteException.class)
+	public void testarSeNovoPapelIncorporadoEmAtualGeraExceção() {
+		// E=vinculadoEm  (início)
+		// A=vinculadoAté (fim)
+		//papel atual                 E                 A
+		//papel novo                     E      A
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+			
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2019"), 
+					criarData("01/02/2020")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}
+	}
+	@Test(expected=PapelConflitanteException.class)
+	public void testarSeNovoPapelComFimEmAtualGeraExceção() {
+		// E=vinculadoEm  (início)
+		// A=vinculadoAté (fim)
+		//papel atual                 E                 A
+		//papel novo               E      A
+		
+	}
+	@Test(expected=PapelConflitanteException.class)
+	public void testarSeNovoPapelComInícioEmAtualGeraExceção() {
+		// E=vinculadoEm  (início)
+		// A=vinculadoAté (fim)
+		//papel atual                 E                 A
+		//papel novo                        E               A
+		
+	}
+	@Test(expected=PapelConflitanteException.class)
+	public void testarSeNovoPapelQueIncorporeVigênciaDeAtualGeraExceção() {
+		// E=vinculadoEm  (início)
+		// A=vinculadoAté (fim)
+		//papel atual                 E                 A
+		//papel novo                E                        A
+		
+	}
+	
+	private Date criarData(String data) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setLenient(false);
+		return sdf.parse(data);
+	}
+
+	@Test
+	public void testarSeAceitaNovoPapelDeTipoDifernteDeAtual() {
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+			
+			ana.adicionarPapel(new Aluno(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+}
