@@ -35,7 +35,18 @@ public class TestesComPapéisDePessoas {
 		// A=vinculadoAté (fim)
 		//papel atual                 E                 A
 		//papel novo               E      A
-		
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+			
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2010"), 
+					criarData("01/12/2020")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}		
 	}
 	@Test(expected=PapelConflitanteException.class)
 	public void testarSeNovoPapelComInícioEmAtualGeraExceção() {
@@ -43,6 +54,18 @@ public class TestesComPapéisDePessoas {
 		// A=vinculadoAté (fim)
 		//papel atual                 E                 A
 		//papel novo                        E               A
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+			
+			ana.adicionarPapel(new Professor(
+					criarData("01/02/2018"), 
+					criarData("01/02/2021")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}		
 		
 	}
 	@Test(expected=PapelConflitanteException.class)
@@ -51,7 +74,18 @@ public class TestesComPapéisDePessoas {
 		// A=vinculadoAté (fim)
 		//papel atual                 E                 A
 		//papel novo                E                        A
-		
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));
+			
+			ana.adicionarPapel(new Professor(
+					criarData("01/02/2010"), 
+					criarData("01/02/2022")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}		
 	}
 	
 	private Date criarData(String data) throws ParseException {
