@@ -8,4 +8,12 @@ public class Banco extends Papel {
 		super(vinculadoEm, vinculadoAté);
 	}
 
+	@Override
+	public boolean possívelVincularA(Pessoa pessoaQueAssumiráEstePapel) {
+		if (pessoaQueAssumiráEstePapel instanceof Jurídica) {
+			return true;
+		}
+		return false;
+	}
+
 }

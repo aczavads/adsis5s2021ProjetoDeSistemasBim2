@@ -13,6 +13,17 @@ public class TestesComPapéisDePessoas {
 
 
 	@Test(expected=PapelInválidoException.class)
+	public void testarSeJurídicaRecusaPapelDeVeterinário() {
+		Pessoa unicesumar = new Jurídica("UniCesumar - Universidade Cesumar"); 
+		try {
+			unicesumar.adicionarPapel(new Veterinário(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));			
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}
+	}
+	@Test(expected=PapelInválidoException.class)
 	public void testarSeJurídicaRecusaPapelDeProfessor() {
 		Pessoa unicesumar = new Jurídica("UniCesumar - Universidade Cesumar"); 
 		try {
@@ -63,7 +74,7 @@ public class TestesComPapéisDePessoas {
 		}
 	}
 	@Test
-	public void testarSeFísicaAceitaPapelDeAlunoProfessorFornecedor() {
+	public void testarSeFísicaAceitaPapelDeAlunoProfessorFornecedorVeterinário() {
 		Pessoa ana = new Física("Ana Maria Costa");
 		try {
 			ana.adicionarPapel(new Professor(
@@ -73,6 +84,9 @@ public class TestesComPapéisDePessoas {
 					criarData("01/01/2018"), 
 					criarData("31/12/2020")));			
 			ana.adicionarPapel(new Fornecedor(
+					criarData("01/01/2018"), 
+					criarData("31/12/2020")));			
+			ana.adicionarPapel(new Veterinário(
 					criarData("01/01/2018"), 
 					criarData("31/12/2020")));			
 		} catch (ParseException e) {

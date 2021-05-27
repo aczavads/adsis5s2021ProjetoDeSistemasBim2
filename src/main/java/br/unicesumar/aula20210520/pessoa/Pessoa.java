@@ -24,6 +24,9 @@ public abstract class Pessoa {
 	
 	
 	public void adicionarPapel(Papel novo) {
+		if (!novo.possívelVincularA(this)) {
+			throw new PapelInválidoException();
+		}
 //		if (this instanceof Física) {
 //			if (novo instanceof Banco) {
 //				throw new PapelInválidoException();

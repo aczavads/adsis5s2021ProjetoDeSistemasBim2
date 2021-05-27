@@ -8,4 +8,12 @@ public class Professor extends Papel {
 		super(vinculadoEm, vinculadoAté);
 	}
 
+	@Override
+	public boolean possívelVincularA(Pessoa pessoaQueAssumiráEstePapel) {
+		if (pessoaQueAssumiráEstePapel instanceof Física) {
+			return true;
+		}
+		return false;
+	}
+
 }
