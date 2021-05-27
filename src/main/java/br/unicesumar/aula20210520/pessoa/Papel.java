@@ -27,4 +27,7 @@ public abstract class Papel {
 	public void setVinculadoEm(Date vinculadoEm) {
 		this.vinculadoEm = vinculadoEm;
 	}
+	
+	public abstract boolean possívelVincularA(Pessoa pessoaQueAssumiráEstePapel);
+	
 }

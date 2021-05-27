@@ -24,16 +24,16 @@ public abstract class Pessoa {
 	
 	
 	public void adicionarPapel(Papel novo) {
-		if (this instanceof Física) {
-			if (novo instanceof Banco) {
-				throw new PapelInválidoException();
-			}
-		}
-		if (this instanceof Jurídica) {
-			if (novo instanceof Professor || novo instanceof Aluno) {
-				throw new PapelInválidoException();
-			}
-		}
+//		if (this instanceof Física) {
+//			if (novo instanceof Banco) {
+//				throw new PapelInválidoException();
+//			}
+//		}
+//		if (this instanceof Jurídica) {
+//			if (novo instanceof Professor || novo instanceof Aluno) {
+//				throw new PapelInválidoException();
+//			}
+//		}
 		long contagemDePapéisConflitantes = papéis.stream()
 			.filter(atual -> atual.getClass().equals(novo.getClass()))
 			.filter(atual -> (novo.getVinculadoEm().compareTo(atual.getVinculadoEm()) >= 0 &&
