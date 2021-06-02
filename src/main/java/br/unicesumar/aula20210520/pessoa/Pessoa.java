@@ -2,6 +2,7 @@ package br.unicesumar.aula20210520.pessoa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public abstract class Pessoa {
@@ -53,6 +54,11 @@ public abstract class Pessoa {
 	}
 	
 	public List<Papel> getPapéisVigentes() {
-		return null;
+		return papéis.stream()
+				.collect(Collectors.toList());
 	}
 }
+
+
+
+
