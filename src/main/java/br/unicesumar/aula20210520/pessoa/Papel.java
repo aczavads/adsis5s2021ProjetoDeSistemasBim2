@@ -20,6 +20,10 @@ public abstract class Papel {
 		return vinculadoAté;
 	}
 	
+	public Date getVinculadoAté(Date dataAlternativaSeNull) {
+		return vinculadoAté == null ? dataAlternativaSeNull : vinculadoAté;
+	}
+	
 	public void setVinculadoAté(Date vinculadoAté) {
 		this.vinculadoAté = vinculadoAté;
 	}
@@ -29,5 +33,5 @@ public abstract class Papel {
 	}
 	
 	public abstract boolean possívelVincularA(Pessoa pessoaQueAssumiráEstePapel);
-	
+
 }

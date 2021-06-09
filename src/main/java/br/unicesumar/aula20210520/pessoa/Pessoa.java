@@ -42,11 +42,11 @@ public abstract class Pessoa {
 		long contagemDePapéisConflitantes = papéis.stream()
 			.filter(atual -> atual.getClass().equals(novo.getClass()))
 			.filter(atual -> (novo.getVinculadoEm().compareTo(atual.getVinculadoEm()) >= 0 &&
-					          novo.getVinculadoEm().compareTo(atual.getVinculadoAté()) <= 0) ||
+					          novo.getVinculadoEm().compareTo(atual.getVinculadoAté(new Date()) ) <= 0) ||
             			     (novo.getVinculadoAté().compareTo(atual.getVinculadoEm()) >= 0 &&
-			                  novo.getVinculadoAté().compareTo(atual.getVinculadoAté()) <= 0) || 
+			                  novo.getVinculadoAté().compareTo(atual.getVinculadoAté(new Date()) ) <= 0) || 
             			     (novo.getVinculadoEm().compareTo(atual.getVinculadoEm()) <= 0 &&
-			                  novo.getVinculadoAté().compareTo(atual.getVinculadoAté()) >= 0))
+			                  novo.getVinculadoAté().compareTo(atual.getVinculadoAté(new Date()) ) >= 0))
 			.count();
 		if (contagemDePapéisConflitantes > 0) {
 			throw new PapelConflitanteException();
@@ -64,7 +64,7 @@ public abstract class Pessoa {
 		temPapel = 1 == papéis.stream()
 			.filter(p -> p.getClass().equals(classe))
 			.filter(p -> p.getVinculadoEm().compareTo(inícioPeríodo) <= 0 &&
-			             p.getVinculadoAté().compareTo(fimPeríodo) >= 0)
+			             p.getVinculadoAté(fimPeríodo).compareTo(fimPeríodo) >= 0)
 			.count();
 		
 		return temPapel;
@@ -74,7 +74,7 @@ public abstract class Pessoa {
 		Date hoje = new Date();
 		return papéis.stream()
 				.filter(atual -> atual.getVinculadoEm().compareTo(hoje) <= 0 &&
-						         atual.getVinculadoAté().compareTo(hoje) >= 0)
+						         atual.getVinculadoAté(hoje).compareTo(hoje) >= 0)
 				.collect(Collectors.toList());
 	}
 }

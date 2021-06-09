@@ -25,7 +25,23 @@ public class TestesAtribuiçãoDocente {
 			fail(e.getMessage());
 		}
 	}
-	
+
+	@Test
+	public void testarSeAceitaPessoaQueSejaProfessorComFinalNulo() {
+		Física ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					null));			
+			AtribuiçãoDocente nova = new AtribuiçãoDocente(
+					criarData("01/02/2021"),
+					criarData("15/07/2021") , 
+					ana);
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}
+	}
+
 	@Test
 	public void testarSeAceitaPessoaQueSejaProfessor() {
 		Física ana = new Física("Ana Maria Costa");
