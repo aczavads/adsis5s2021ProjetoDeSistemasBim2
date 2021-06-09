@@ -1,6 +1,7 @@
 package br.unicesumar.aula20210520.pessoa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,8 +54,27 @@ public abstract class Pessoa {
 		this.papéis.add(novo);
 	}
 	
+	public boolean temPapelParaPeríodo(Class<? extends Papel> classe, Date inícioPeríodo, Date fimPeríodo) {
+		boolean temPapel = false; 
+		
+		//Vigência
+		//    I                   F
+		//Período
+		//       ip       fp
+		temPapel = 1 == papéis.stream()
+			.filter(p -> p.getClass().equals(classe))
+			.filter(p -> p.getVinculadoEm().compareTo(inícioPeríodo) <= 0 &&
+			             p.getVinculadoAté().compareTo(fimPeríodo) >= 0)
+			.count();
+		
+		return temPapel;
+	}
+	
 	public List<Papel> getPapéisVigentes() {
+		Date hoje = new Date();
 		return papéis.stream()
+				.filter(atual -> atual.getVinculadoEm().compareTo(hoje) <= 0 &&
+						         atual.getVinculadoAté().compareTo(hoje) >= 0)
 				.collect(Collectors.toList());
 	}
 }

@@ -12,6 +12,7 @@ import org.junit.Test;
 public class TestesComPapéisDePessoas {
 
 
+	
 	@Test(expected=PapelInválidoException.class)
 	public void testarSeJurídicaRecusaPapelDeVeterinário() {
 		Pessoa unicesumar = new Jurídica("UniCesumar - Universidade Cesumar"); 
@@ -94,6 +95,26 @@ public class TestesComPapéisDePessoas {
 		}
 	}
 	
+	@Test(expected=PapelConflitanteException.class)
+	public void testarSeNovoPapelIncorporadoEmAtualComFinalNuloGeraExceção() {
+		// E=vinculadoEm  (início)
+		// A=vinculadoAté (fim)
+		//papel atual                 E                 A
+		//papel novo                     E      A
+		Pessoa ana = new Física("Ana Maria Costa");
+		try {
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2018"), 
+					null));
+			
+			ana.adicionarPapel(new Professor(
+					criarData("01/01/2019"), 
+					criarData("01/02/2020")));
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		}
+	}
+
 	
 	@Test(expected=PapelConflitanteException.class)
 	public void testarSeNovoPapelIncorporadoEmAtualGeraExceção() {

@@ -17,13 +17,7 @@ public class AtribuiçãoDocente {
 	}
 	
 	private void setProfessor(Física professor) {
-		//validar aqui!
-		long contagemPapéisDeProfessor = professor.getPapéisVigentes()
-				.stream()
-				.filter(p -> p instanceof Professor)
-				.count();
-		if (contagemPapéisDeProfessor == 0) {
-			System.out.println("Opa, não encontrei papel de professor, vou lançar a exceção!");
+		if (!professor.temPapelParaPeríodo(Professor.class, inícioEm, términoEm)) {
 			throw new AtribuiçãoDocenteInválidaException();
 		}
 		this.professor = professor;
